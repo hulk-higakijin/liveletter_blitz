@@ -1,6 +1,6 @@
 import { Metadata } from "next"
-import Link from "next/link"
 import { invoke } from "src/app/blitz-server"
+import PostCard from "../../posts/components/PostCard"
 import getPosts from "../../posts/queries/getPosts"
 import Avatar from "../components/Avatar"
 import getUser from "../queries/getUser"
@@ -30,10 +30,7 @@ export default async function Page({ params }: UserPageProps) {
       </div>
       <div className="liveletter_container">
         {posts.map((post) => (
-          <div key={post.id}>
-            <p>{post.title}</p>
-            <p>{post.emoji}</p>
-          </div>
+          <PostCard key={post.id} {...post} />
         ))}
       </div>
     </div>
