@@ -13,9 +13,6 @@ export default resolver.pipe(
   resolver.authorize(),
   async ({ id }) => {
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    console.log("hello world!")
-    console.log("id", id)
-
     const user = await db.user.findFirst({ where: { id } });
 
     if (!user) throw new NotFoundError();
