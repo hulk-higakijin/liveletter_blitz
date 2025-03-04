@@ -14,7 +14,7 @@ export default function Page() {
       <p>
         <Link href={"/posts/new"}>Create Post</Link>
       </p>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense>
         <PostsList />
       </Suspense>
     </div>
