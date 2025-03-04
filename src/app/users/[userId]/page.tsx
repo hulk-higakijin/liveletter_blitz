@@ -29,7 +29,7 @@ export default async function Page({ params }: UserPageProps) {
         </div>
       </div>
       <div className="liveletter_container">
-        <div className="pt-4">
+        <div className="pt-10">
           <div className="grid md:grid-cols-3 gap-4">
             {posts.map((post) => (
               <PostCard key={post.id} {...post} />

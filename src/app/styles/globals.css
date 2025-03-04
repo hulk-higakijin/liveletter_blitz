@@ -8,5 +8,5 @@
 }
 
 .liveletter_container {
-  @apply container max-w-3xl mx-auto p-4
+  @apply container max-w-3xl mx-auto px-4
 }
