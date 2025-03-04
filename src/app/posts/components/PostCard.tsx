@@ -1,18 +1,16 @@
 import { Post } from "@prisma/client"
+import { format } from "date-fns"
 
-const PostCard = ({ title, emoji }: Post) => {
+const PostCard = ({ title, emoji, createdAt }: Post) => {
   return (
     <div className="card bg-base-100 shadow-sm">
-      <figure>
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-          alt="Shoes"
-        />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">{title}</h2>
-        <p>
+      <figure className="bg-blue-100 h-40 md:h-32 rounded-lg text-3xl">
           {emoji}
+      </figure>
+      <div className="card-body p-4">
+        <h2 className="text-lg">{title}</h2>
+        <p className="text-sm">
+          {format(new Date(createdAt), "yyyy/MM/dd")}
         </p>
       </div>
     </div>

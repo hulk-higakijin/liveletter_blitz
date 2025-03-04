@@ -29,9 +29,13 @@ export default async function Page({ params }: UserPageProps) {
         </div>
       </div>
       <div className="liveletter_container">
-        {posts.map((post) => (
-          <PostCard key={post.id} {...post} />
-        ))}
+        <div className="pt-4">
+          <div className="grid md:grid-cols-3 gap-4">
+            {posts.map((post) => (
+              <PostCard key={post.id} {...post} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )
