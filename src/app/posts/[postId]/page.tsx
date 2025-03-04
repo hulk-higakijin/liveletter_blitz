@@ -3,6 +3,7 @@ import { Metadata } from "next"
 import { invoke } from "src/app/blitz-server"
 import Avatar from "../../users/components/Avatar"
 import getUser from "../../users/queries/getUser"
+import PostTitleAnimation from "../components/PostTitleAnimation"
 import getPost from "../queries/getPost"
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
@@ -23,7 +24,7 @@ export default async function Page({ params }: PostPageProps) {
   return (
     <div className="max-w-2xl mx-auto container px-4">
       <div className="pt-20">
-        <p className="text-lg">{post.title}</p>
+        <PostTitleAnimation {...post} />
       </div>
 
       <div className="pt-10">
