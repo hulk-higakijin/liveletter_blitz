@@ -1,16 +1,14 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Suspense } from "react";
 import { invoke } from "src/app/blitz-server";
 import getUser from "../queries/getUser";
-import { User } from "../components/User";
 
 export async function generateMetadata({
   params,
 }: UserPageProps): Promise<Metadata> {
-  const User = await invoke(getUser, { id: params.userId });
+  const user = await invoke(getUser, { id: params.userId });
   return {
-    title: `User ${User.id} - ${User.name}`,
+    title: `User ${user.id} - ${user.name}`,
   };
 }
 
@@ -19,14 +17,14 @@ type UserPageProps = {
 };
 
 export default async function Page({ params }: UserPageProps) {
+  const user = await invoke(getUser, { id: params.userId });
+
   return (
     <div>
       <p>
         <Link href={"/"}>Users</Link>
       </p>
-      <Suspense fallback={<div>Loading...</div>}>
-        <User userId={params.userId} />
-      </Suspense>
+      <p>{user.email}</p>
     </div>
   );
 }
