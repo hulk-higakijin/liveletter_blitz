@@ -1,12 +1,21 @@
 "use client"
 
+import { Post } from "@prisma/client"
 import { HiOutlineEmojiHappy } from "@react-icons/all-files/hi/HiOutlineEmojiHappy"
 import EmojiPicker from "emoji-picker-react"
 import { useState } from "react"
 
-const PostEmojiPicker = ({ className }: { className?: string }) => {
+const PostEmojiPicker = ({
+  className,
+  data,
+  setData,
+}: {
+  className?: string
+  data: Post
+  setData: (data: Post) => void
+}) => {
+  const { emoji } = data
   const [open, setOpen] = useState(false)
-  const [emoji, setEmoji] = useState("")
 
   return (
     <div className={className}>
@@ -22,7 +31,7 @@ const PostEmojiPicker = ({ className }: { className?: string }) => {
           <div className="absolute top-10 right-0">
             <EmojiPicker
               onEmojiClick={(emoji) => {
-                setEmoji(emoji.emoji)
+                setData({ ...data, emoji: emoji.emoji })
                 setOpen(false)
               }}
             />

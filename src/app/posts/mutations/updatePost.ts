@@ -1,14 +1,20 @@
-import { resolver } from "@blitzjs/rpc";
-import db from "db";
-import { UpdatePostSchema } from "../schemas";
+import { invoke, resolver } from "@blitzjs/rpc"
+import db from "db"
+import getPost from "../queries/getPost"
+import { UpdatePostSchema } from "../schemas"
 
 export default resolver.pipe(
   resolver.zod(UpdatePostSchema),
   resolver.authorize(),
-  async ({ id, ...data }) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    // const post = await db.post.update({ where: { id }, data });
-    //
-    // return post;
+  async ({ id, ...data }, ctx) => {
+    let post = await invoke(getPost, { id })
+
+    if (post.userId !== ctx.session.userId) {
+      throw new Error("You are not authorized to perform this action")
+    }
+
+    post = await db.post.update({ where: { id }, data })
+
+    return post
   }
-);
+)
