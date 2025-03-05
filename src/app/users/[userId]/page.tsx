@@ -4,6 +4,8 @@ import PostCard from "../../posts/components/PostCard"
 import getPosts from "../../posts/queries/getPosts"
 import Avatar from "../components/Avatar"
 import getUser from "../queries/getUser"
+import Link from "next/link"
+import { HiOutlinePlus } from "@react-icons/all-files/hi/HiOutlinePlus"
 
 export async function generateMetadata({ params }: UserPageProps): Promise<Metadata> {
   const user = await invoke(getUser, { id: params.userId })
@@ -26,6 +28,9 @@ export default async function Page({ params }: UserPageProps) {
         <div className="flex gap-2 pt-20">
           <Avatar />
           <p className="my-auto">higakijin</p>
+          <Link href={"/posts/new"} className="ml-auto btn btn-neutral btn-circle btn-sm">
+            <HiOutlinePlus className="text-lg" />
+          </Link>
         </div>
       </div>
       <div className="liveletter_container">
