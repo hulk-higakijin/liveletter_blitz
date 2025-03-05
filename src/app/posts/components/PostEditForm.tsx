@@ -7,17 +7,18 @@ import updatePost from "../mutations/updatePost"
 import PostContentEditor from "./PostContentEditor"
 import PostEmojiPicker from "./PostEmojiPicker"
 
-const INPUT_WAITING_MILSECONDS = 2000
+const INPUT_WAITING_MILSECONDS = 1000
 
 const PostEditForm = (post: Post) => {
   const [data, setData] = useState<Post>(post)
   const [updatePostMutation] = useMutation(updatePost)
 
   useEffect(() => {
-    (async() => {
-      await new Promise(resolve => setTimeout(resolve, INPUT_WAITING_MILSECONDS));
+    const timer = setTimeout(async () => {
       await updatePostMutation(data)
-    })()
+    }, INPUT_WAITING_MILSECONDS)
+
+    return () => clearTimeout(timer)
   }, [data])
 
   return (
