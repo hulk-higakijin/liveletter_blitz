@@ -1,7 +1,7 @@
 "use client"
 
-import PostContentEditor from "../components/PostContentEditor"
-import PostEmojiPicker from "../components/PostEmojiPicker"
+import PostContentEditor from "../../components/PostContentEditor"
+import PostEmojiPicker from "../../components/PostEmojiPicker"
 
 export default async function Page() {
   return (

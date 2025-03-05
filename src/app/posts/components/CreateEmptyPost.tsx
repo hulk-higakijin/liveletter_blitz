@@ -10,7 +10,7 @@ const CreateEmptyPost = () => {
   const [createEmptyPostMutation] = useMutation(createEmptyPost)
   const handleCreateEmptyPost = async () => {
     const res = await createEmptyPostMutation()
-    router.push(`/posts/${res.id}`)
+    router.push(`/posts/${res.id}/edit`)
   }
 
   return (
