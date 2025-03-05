@@ -1,3 +1,4 @@
+import { PostStatus } from "@prisma/client"
 import { z } from "zod"
 
 export const CreatePostSchema = z.object({
@@ -9,6 +10,7 @@ export const CreatePostSchema = z.object({
 export const UpdatePostSchema = CreatePostSchema.merge(
   z.object({
     id: z.string(),
+    status: z.nativeEnum(PostStatus),
   })
 )
 

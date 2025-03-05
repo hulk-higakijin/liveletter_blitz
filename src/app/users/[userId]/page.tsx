@@ -20,7 +20,13 @@ type UserPageProps = {
 
 export default async function Page({ params }: UserPageProps) {
   const user = await invoke(getUser, { id: params.userId })
-  const { posts } = await invoke(getPosts, { where: { userId: user.id }, orderBy: { id: "desc" } })
+  const { posts } = await invoke(getPosts, {
+    where: {
+      userId: user.id,
+      OR: [{ status: "DRAFT" }, { status: "PUBLISHED" }],
+    },
+    orderBy: { id: "desc" },
+  })
 
   return (
     <div>
