@@ -23,7 +23,8 @@ export default async function Page({ params }: PostPageProps) {
 
   return (
     <div className="max-w-2xl mx-auto container px-4">
-      <div className="pt-20">
+      <div className="pt-20 flex flex-col gap-10">
+        <span className="text-6xl mx-auto">{post.emoji}</span>
         <PostTitleAnimation {...post} />
       </div>
 
