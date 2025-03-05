@@ -15,7 +15,7 @@ const PostEditForm = (post: Post) => {
 
   useEffect(() => {
     const timer = setTimeout(async () => {
-      await updatePostMutation(data)
+      await updatePostMutation({ ...data, status: "DRAFT" })
     }, INPUT_WAITING_MILSECONDS)
 
     return () => clearTimeout(timer)
