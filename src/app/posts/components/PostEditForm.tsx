@@ -33,7 +33,7 @@ const PostEditForm = (post: Post) => {
         />
         <PostEmojiPicker className="ml-auto my-auto" data={data} setData={setData} />
       </div>
-      <PostContentEditor />
+      <PostContentEditor postId={data.id} />
     </div>
   )
 }
