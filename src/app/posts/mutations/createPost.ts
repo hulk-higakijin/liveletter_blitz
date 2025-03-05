@@ -1,13 +1,12 @@
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
-import { CreateEmptyPostSchema } from "../schemas"
+import { CreatePostSchema } from "../schemas"
 
 export default resolver.pipe(
-  resolver.zod(CreateEmptyPostSchema),
+  resolver.zod(CreatePostSchema),
   resolver.authorize(),
-  async (_, ctx) => {
-    const data = { title: "", emoji: "", userId: ctx.session.userId }
-    const post = await db.post.create({ data })
+  async (input, ctx) => {
+    const post = await db.post.create({ data: { ...input, userId: ctx.session.userId } })
 
     return post
   }

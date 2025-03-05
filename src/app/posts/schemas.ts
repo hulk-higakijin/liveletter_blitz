@@ -6,7 +6,7 @@ export const CreatePostSchema = z.object({
   // template: __fieldName__: z.__zodType__(),
 })
 
-export const CreateEmptyPostSchema = z.object({})
+// export const CreateEmptyPostSchema = z.object({})
 
 export const UpdatePostSchema = CreatePostSchema.merge(
   z.object({
