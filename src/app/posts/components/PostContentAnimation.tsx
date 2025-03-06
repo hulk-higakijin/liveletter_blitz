@@ -18,7 +18,6 @@ const PostContentAnimation = (post: Post) => {
 }
 
 const Wrapper = ({ id: postId }: Post) => {
-  const [currentIndex, setCurrentIndex] = useState(1)
   const [{ pens }] = useQuery(getPens, { where: { postId } })
 
   const sequence = pens.flatMap((pen, index) => {
@@ -29,7 +28,7 @@ const Wrapper = ({ id: postId }: Post) => {
           MAX_KEY_TYPING_BLANK_MILLISECONDS
         )
       : 100
-    return [pen.content, delay, () => setCurrentIndex(currentIndex + 1)]
+    return [pen.content, delay]
   })
 
   return (
@@ -39,6 +38,7 @@ const Wrapper = ({ id: postId }: Post) => {
         wrapper="span"
         style={{ display: "inline-block" }}
         cursor={false}
+        speed={99}
       />
     </div>
   )
