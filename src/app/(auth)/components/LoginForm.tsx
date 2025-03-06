@@ -20,7 +20,7 @@ export const LoginForm = (props: LoginFormProps) => {
   const next = useSearchParams()?.get("next")
   return (
     <>
-      <h1>Login</h1>
+      <h1 className="text-lg mb-6 font-bold">Login</h1>
 
       <Form
         submitText="Login"
@@ -50,12 +50,12 @@ export const LoginForm = (props: LoginFormProps) => {
         <LabeledTextField name="email" label="Email" placeholder="Email" />
         <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
         <div>
-          <Link href={"/forgot-password"}>Forgot your password?</Link>
+          <Link href={"/forgot-password"} className="link">Forgot your password?</Link>
         </div>
       </Form>
 
       <div style={{ marginTop: "1rem" }}>
-        Or <Link href="/signup">Sign Up</Link>
+        Or <Link href="/signup" className="link">Sign Up</Link>
       </div>
     </>
   )
