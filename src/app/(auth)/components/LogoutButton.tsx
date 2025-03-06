@@ -10,11 +10,11 @@ export function LogoutButton() {
   return (
     <>
       <button
-        className={styles.button}
         onClick={async () => {
           await logoutMutation()
           router.refresh()
         }}
+        className="btn btn-error btn-sm"
       >
         Logout
       </button>
