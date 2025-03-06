@@ -37,7 +37,7 @@ export default async function Page({ params }: PostPageProps) {
           <p className="my-auto">higakijin</p>
           <p className="my-auto">{format(new Date(post.createdAt), "yyyy/MM/dd")}</p>
         </div>
-        <PostContentAnimation pens={pens} lastPen={pens.slice(-1)[0]} />
+        <PostContentAnimation pens={pens}  />
       </div>
     </div>
   )
