@@ -16,7 +16,7 @@ export const SignupForm = (props: SignupFormProps) => {
 
   return (
     <div>
-      <h1>Create an Account</h1>
+      <h1 className="text-lg mb-6 font-bold">Create an Account</h1>
 
       <Form
         submitText="Create Account"
