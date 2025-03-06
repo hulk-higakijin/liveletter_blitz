@@ -39,7 +39,7 @@ const PostEditForm = ({ post, pens }: { post: Post; pens: Pen[] }) => {
         rows={10}
         placeholder="Text"
         className="bg-base-100 focus:outline-none resize-none w-full"
-        defaultValue={pens.slice(-1)[0].content}
+        defaultValue={pens.slice(-1)[0]?.content}
         onChange={async (e) => {
           await createPenMutation({ content: e.target.value, postId: post.id })
         }}
