@@ -38,7 +38,7 @@ const Wrapper = ({ id: postId }: Post) => {
         wrapper="span"
         style={{ display: "inline-block" }}
         cursor={false}
-        speed={99}
+        speed={95}
       />
     </div>
   )
