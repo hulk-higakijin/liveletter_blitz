@@ -21,8 +21,6 @@ type PostPageProps = {
 
 export default async function Page({ params }: PostPageProps) {
   const post = await invoke(getPost, { id: params.postId })
-  const user = await invoke(getUser, { id: post.userId })
-  const { pens } = await invoke(getPens, { where: { postId: params.postId } })
 
   return (
     <div className="max-w-2xl mx-auto container px-4">
@@ -37,7 +35,7 @@ export default async function Page({ params }: PostPageProps) {
           <p className="my-auto">higakijin</p>
           <p className="my-auto">{format(new Date(post.createdAt), "yyyy/MM/dd")}</p>
         </div>
-        <PostContentAnimation pens={pens}  />
+        <PostContentAnimation {...post}  />
       </div>
     </div>
   )
