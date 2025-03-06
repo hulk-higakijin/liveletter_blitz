@@ -11,6 +11,7 @@ const PostTitleAnimation = ({ title }: Post) => {
         speed={50}
         style={{ display: "inline-block" }}
         repeat={1}
+        cursor={false}
       />
     </div>
   )

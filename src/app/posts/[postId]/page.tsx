@@ -1,8 +1,10 @@
 import { format } from "date-fns"
 import { Metadata } from "next"
 import { invoke } from "src/app/blitz-server"
+import getPens from "../../pens/queries/getPens"
 import Avatar from "../../users/components/Avatar"
 import getUser from "../../users/queries/getUser"
+import PostContentAnimation from "../components/PostContentAnimation"
 import PostTitleAnimation from "../components/PostTitleAnimation"
 import getPost from "../queries/getPost"
 
@@ -19,7 +21,6 @@ type PostPageProps = {
 
 export default async function Page({ params }: PostPageProps) {
   const post = await invoke(getPost, { id: params.postId })
-  const user = await invoke(getUser, { id: post.userId })
 
   return (
     <div className="max-w-2xl mx-auto container px-4">
@@ -34,6 +35,7 @@ export default async function Page({ params }: PostPageProps) {
           <p className="my-auto">higakijin</p>
           <p className="my-auto">{format(new Date(post.createdAt), "yyyy/MM/dd")}</p>
         </div>
+        <PostContentAnimation {...post}  />
       </div>
     </div>
   )

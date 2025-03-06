@@ -10,6 +10,8 @@ export const CreatePostSchema = z.object({
 export const UpdatePostSchema = CreatePostSchema.merge(
   z.object({
     id: z.string(),
+    title: z.string().min(1),
+    emoji: z.string().min(1),
     status: z.nativeEnum(PostStatus),
   })
 )
