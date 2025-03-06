@@ -1,17 +1,19 @@
 "use client"
 
 import { useMutation } from "@blitzjs/rpc"
-import { Post } from "@prisma/client"
+import { Pen, Post } from "@prisma/client"
 import { useEffect, useState } from "react"
+import createPen from "../../pens/mutations/createPen"
 import updatePost from "../mutations/updatePost"
-import PostContentEditor from "./PostContentEditor"
+import TextareaAutosize from "react-textarea-autosize"
 import PostEmojiPicker from "./PostEmojiPicker"
 
 const INPUT_WAITING_MILSECONDS = 1000
 
-const PostEditForm = (post: Post) => {
+const PostEditForm = ({ post, pens }: { post: Post; pens: Pen[] }) => {
   const [data, setData] = useState<Post>(post)
   const [updatePostMutation] = useMutation(updatePost)
+  const [createPenMutation] = useMutation(createPen)
 
   useEffect(() => {
     const timer = setTimeout(async () => {
@@ -33,7 +35,15 @@ const PostEditForm = (post: Post) => {
         />
         <PostEmojiPicker className="ml-auto my-auto" data={data} setData={setData} />
       </div>
-      <PostContentEditor postId={data.id} />
+      <TextareaAutosize
+        rows={10}
+        placeholder="Text"
+        className="bg-base-100 focus:outline-none resize-none w-full"
+        defaultValue={pens.slice(-1)[0].content}
+        onChange={async (e) => {
+          await createPenMutation({ content: e.target.value, postId: post.id })
+        }}
+      />
     </div>
   )
 }

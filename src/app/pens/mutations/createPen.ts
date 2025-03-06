@@ -6,7 +6,6 @@ export default resolver.pipe(
   resolver.zod(CreatePenSchema),
   resolver.authorize(),
   async (input) => {
-    console.log("input", input);
     const pen = await db.pen.create({ data: input });
 
     return pen;
